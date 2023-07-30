@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { store } from './app/store.js';
 
 import { App } from './app/App.js';
 // Import the store here.
@@ -8,11 +9,13 @@ import { App } from './app/App.js';
 const render = () => {
   ReactDOM.render(
     <App 
-      
+    state={store.getState()}
+    dispatch={store.dispatch}
     />,
     document.getElementById('root')
   )
 };
 render();
+store.subscribe(render);
 
 // Subscribe render to the store.

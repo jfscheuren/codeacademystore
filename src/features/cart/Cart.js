@@ -3,6 +3,9 @@ import {
   calculateTotal,
   getCurrencySymbol,
 } from '../../utilities/utilities.js';
+import { cartReducer } from './cartSlice.js';
+import { changeItemQuantity} from './cartSlice.js'
+import { store } from '../../app/store.js';
 
 // Import the changeItemQuantity() action creator.
 
@@ -14,17 +17,25 @@ export const Cart = (props) => {
     if (input === '') {
       return;
     }
+ 
+
 
     // Otherwise, convert the input into a number and pass it along as the newQuantity.
     const newQuantity = Number(input);
 
     // Dispatch an action to change the quantity of the given name and quantity.
+    dispatch(changeItemQuantity(name, newQuantity ));
+
 
   };
 
   // Use the cart and currencyFilter slices to render their data.
-  const cartElements = 'REPLACE_ME';
-  const total = 0;
+  const cartElements = [];
+  for (let itemName in cart){
+    cartElements.push(createCartItem(itemName));
+  }
+  
+  const total = calculateTotal(cart, currencyFilter);
 
   return (
     <div id="cart-container">

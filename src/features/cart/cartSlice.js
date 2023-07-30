@@ -4,12 +4,7 @@ export const addItem = (itemToAdd) => {
       payload: itemToAdd,
     };
   };
-export const changeItemQuantity = (name, newQuantity) => {
-  return {
-    type: 'cart/changeItemQuantity',
-    payload: {name, newQuantity}
-  };
-};
+  
   // Create your changeItemQuantity action creator here.
   
   
@@ -32,20 +27,11 @@ export const changeItemQuantity = (name, newQuantity) => {
       case 'cart/changeItemQuantity': {
         const { name, newQuantity } = action.payload;
         const itemToUpdate = cart[name];
-        const updatedItem = {
-          ...itemToUpdate, 
-          quantity: newQuantity
-        }
-       
-       
-
-
-
   
         // Create a copy of itemToUpdate and update the quantity prop.
-        
+  
         // Return a copy of the cart with the updatedItem included.
-        return {...cart, [name] : updatedItem}
+        return {};
       }
       default: {
         return cart;
